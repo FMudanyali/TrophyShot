@@ -1,0 +1,12 @@
+version: 2
+firmware: 3.60
+modules:
+  SceShellSvc:
+    nid: 0x36E557FA
+    libraries:
+      SceShellUtil:
+        kernel: false
+        nid: 0xD2B1C8AE
+        functions:
+          sceShellUtilTextClipboardWrite: 0xC4810C56
+          sceShellUtilTextClipboardRead: 0x1B186905
