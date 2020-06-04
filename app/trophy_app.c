@@ -16,15 +16,11 @@ int sceShellUtilTextClipboardRead(void* data, SceSize size, SceSize *textlen);
 int sceShellUtilTextClipboardWrite(const void* data, SceSize size);
 int sceAppMgrIsGameProgram(int);
 
-int hook[2];
+int hook[1];
 static tai_hook_ref_t screenshot_hook;
-static tai_hook_ref_t screen_disable_hook;
 const static int done_magic = DONE_MAGIC;
 static int frames = 0;
 
-void sceScreenShotDisable_patched() {
-	printf("INFO TrophyShot: Prevented disabling screenshot. \n");
-}
 
 int sceDisplaySetFrameBuf_patched(const SceDisplayFrameBuf* pParam, SceDisplaySetBufSync sync) {
 
@@ -63,12 +59,6 @@ int module_start(SceSize args, void *argp) {
 
 	if (ret == 1) {
 		sceSysmoduleLoadModule(SCE_SYSMODULE_SCREEN_SHOT);
-		hook[1] = taiHookFunctionExport(
-			&screen_disable_hook,
-			"SceScreenShot",
-			0xF26FC97D, //SceScreenShot
-			0x50AE9FF9, //SceScreenShotDisable
-			sceScreenShotDisable_patched);
 
 		hook[0] = taiHookFunctionImport(
 			&screenshot_hook,
@@ -77,7 +67,7 @@ int module_start(SceSize args, void *argp) {
 			0x7A410B64, //sceDisplaySetFrameBuf
 			sceDisplaySetFrameBuf_patched);
 
-		printf("hooks: 0x%x 0x%x\n", hook[0], hook[1]);
+		printf("INFO TrophyShot_app: sceDisplaySetFrameBuf HOOK: 0x%x\n", hook[0]);
 	}
 
 	return SCE_KERNEL_START_SUCCESS;
@@ -85,6 +75,5 @@ int module_start(SceSize args, void *argp) {
 
 int module_stop(SceSize args, void *argp) {
 	if (hook[0] >= 0) taiHookRelease(hook[0], screenshot_hook);
-	if (hook[1] >= 0) taiHookRelease(hook[1], screen_disable_hook);
 	return SCE_KERNEL_STOP_SUCCESS;
 }
