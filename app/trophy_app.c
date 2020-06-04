@@ -30,7 +30,7 @@ int sceDisplaySetFrameBuf_patched(const SceDisplayFrameBuf* pParam, SceDisplaySe
 
 	int read_data, screenshot_ret;
 
-	if (frames == 15) {
+	if (frames == 5) {
 
 		frames = 0;
 		sceShellUtilTextClipboardRead(&read_data, sizeof(int), NULL);

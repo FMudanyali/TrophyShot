@@ -32,6 +32,7 @@ target_link_libraries(${PROJECT_NAME}
 	SceKernelModulemgr_stub
 	SceKernelThreadMgr_stub
 	SceSysmem_stub
+	SceAppMgr_stub
 	SceScreenShot_stub_weak
 	SceShellSvc_stub_weak
 	SceSysmodule_stub
