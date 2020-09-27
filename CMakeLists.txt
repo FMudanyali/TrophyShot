@@ -8,12 +8,8 @@ if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
   endif()
 endif()
 
-project(trophyshot_app)
+project(TrophyShot)
 include("$ENV{DOLCESDK}/share/dolce.cmake" REQUIRED)
-
-dolce_gen_libs(SceShellSvc_stubs
-  SceShellSvc.yml
-  LIB SceShellSvc_stub_weak)
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wl,-q -Wall -O3 -std=gnu99")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -nostdlib")
@@ -24,28 +20,19 @@ link_directories(
 )
 
 add_executable(${PROJECT_NAME}
-	trophy_app.c
+	main.c
 )
 
 target_link_libraries(${PROJECT_NAME}
-	SceLibKernel_stub
-	SceKernelModulemgr_stub
-	SceKernelThreadMgr_stub
-	SceSysmem_stub
-	SceAppMgr_stub
-	SceScreenShot_stub_weak
-	SceShellSvc_stub_weak
-	SceSysmodule_stub
-	SceShellSvc_stub
-	ScePaf_stub_weak
-	SceRtc_stub
-	gcc
-	k
-	taihen_stub
-	taihenModuleUtils_stub
+  SceLibKernel_stub
+  SceThreadmgr_stub
+  SceScreenShot_stub_weak
+  SceModulemgr_stub
+  SceSysmodule_stub
+  taihenModuleUtils_stub
+  taihen_stub
 )
 dolce_create_self(${PROJECT_NAME}.suprx ${PROJECT_NAME}
   UNSAFE
   CONFIG ${CMAKE_SOURCE_DIR}/TrophyShot.yml
 )
-

@@ -10,17 +10,12 @@ Get it from here: https://github.com/FMudanyali/TrophyShot/releases
 
 In config.txt inside tai folder,
 
-TrophyShot_shell.suprx goes under *main
-
-TrophyShot_app.suprx goes under *ALL
+TrophyShot.suprx goes under *main
 
 like this:
 ```
 *main
-ur0:tai/TrophyShot_shell.suprx
-
-*ALL
-ur0:tai/TrophyShot_app.suprx
+ur0:tai/TrophyShot.suprx
 ```
 After modifying the config, reboot.
 
