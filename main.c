@@ -2,7 +2,6 @@
 #include <psp2/kernel/modulemgr.h>
 #include <psp2/kernel/threadmgr.h>
 #include <psp2/kernel/clib.h>
-#include <psp2/sysmodule.h>
 
 #define printf sceClibPrintf
 
