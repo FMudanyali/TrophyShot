@@ -52,7 +52,7 @@ int sub_81229FAC_patched(int arg1, int arg2){
 		default:
 			break;
 	}
-    return ret;
+	return ret;
 }
 
 void _start() __attribute__((weak, alias("module_start")));
@@ -63,7 +63,7 @@ int module_start(SceSize args, void *argp) {
 	}
 	sceIoClose(fd);
 
-    tai_module_info_t tai_info;
+	tai_module_info_t tai_info;
 	int offset_shellshot, offset_dialog;
 	tai_info.size = sizeof(tai_module_info_t);
 	int ret = taiGetModuleInfo("SceShell", &tai_info);
@@ -80,13 +80,13 @@ int module_start(SceSize args, void *argp) {
 			offset_shellshot = 0x14a980;
 			offset_dialog = 0x22a048;
 			break;
-      	case 0x34B4D82E: // 3.67 retail
-      	case 0x12DAC0F3: // 3.68 retail
-      	case 0x0703C828: // 3.69 retail
-      	case 0x2053B5A5: // 3.70 retail
-      	case 0xF476E785: // 3.71 retail
-      	case 0x939FFBE9: // 3.72 retail
-      	case 0x734D476A: // 3.73 retail
+	  	case 0x34B4D82E: // 3.67 retail
+	  	case 0x12DAC0F3: // 3.68 retail
+	  	case 0x0703C828: // 3.69 retail
+	  	case 0x2053B5A5: // 3.70 retail
+	  	case 0xF476E785: // 3.71 retail
+	  	case 0x939FFBE9: // 3.72 retail
+	  	case 0x734D476A: // 3.73 retail
 		case 0xE6A02F2B: // 3.65 PDEL
 		case 0x587F9CED: // 3.65 PTEL
 			offset_shellshot = 0x142db4;
@@ -103,7 +103,7 @@ int module_start(SceSize args, void *argp) {
 		&shellShot
 	);
 	//function found by Graphene
-    hook[0] = taiHookFunctionOffset(
+	hook[0] = taiHookFunctionOffset(
 		&shell_hook,
 		tai_info.modid,
 		0,
@@ -112,7 +112,7 @@ int module_start(SceSize args, void *argp) {
 		sub_81229FAC_patched
 	);
 
-    printf("INFO sub_81229FAC_patched: 0x%x\n", hook[0]);
+	printf("INFO sub_81229FAC_patched: 0x%x\n", hook[0]);
 	return SCE_KERNEL_START_SUCCESS;
 }
 
