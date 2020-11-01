@@ -76,6 +76,9 @@ int module_start(SceSize args, void *argp) {
 			break;
 		case 0x6CB01295: // 3.60 PDEL
 		case 0xEAB89D5C: // 3.60 PTEL
+			offset_shellshot = 0x142d5c;
+			offset_dialog = 0x2223e0;
+			break;
 		case 0x5549BF1F: // 3.65 retail
 			offset_shellshot = 0x14a980;
 			offset_dialog = 0x22a048;
